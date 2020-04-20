@@ -13,15 +13,16 @@ const io = socketio(server);
 
 
 
+//app.use(cors());
 
 app.use((req,res,next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
-    //     res.setHeader('Access-Control-Allow-Methods', 'GET', 'POST', 'PUT', 'DELETE', 'PATCH')
-    //     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-        next();
+        res.setHeader('Access-Control-Allow-Methods', 'GET', 'POST', 'PUT', 'DELETE', 'PATCH')
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    return res.sendStatus(200);    
+    //next();
     })
 app.use(router);
-app.use(cors());
 
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
