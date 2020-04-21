@@ -22,8 +22,9 @@ const io = socketio(server);
 //         
 //     next();
 //     })
-app.use(router);
 app.use(cors());
+app.use(router);
+
 
 io.on('connect', (socket) => {
   socket.on('join', ({ name, room }, callback) => {
